@@ -8,7 +8,7 @@ export default createGlobalStyle`
   }
   html {
     min-height: 100%;
-    background: var(--color-primary);
+    background: var(--color-bg);
   }
   h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
@@ -26,7 +26,6 @@ export default createGlobalStyle`
 
     --color-bg: #101014;
     --color-bg-container: #24232A;
-    --color-border: #ddd;
 
     --strength-weak: #FF6961;
     --strength-medium: #F5CA6E;
