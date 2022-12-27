@@ -28,4 +28,22 @@ export const CharLength = styled.div`
   }
 `;
 
+export const Includes = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 12px;
+  
+  > div {
+    display: flex;
+    align-items: center;
+
+    margin-bottom: 12px;
+
+    span {
+      color: var(--color-primary);
+    }
+  }
+`;
+
 
