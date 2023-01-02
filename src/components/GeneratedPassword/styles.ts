@@ -17,5 +17,6 @@ export const Container = styled.div`
 
   > button {
     color: var(--color-primary);
+    cursor: pointer;
   }
 `;
