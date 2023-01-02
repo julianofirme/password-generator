@@ -1,12 +1,14 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent } from 'react';
+import { useRecoilState } from 'recoil';
+import { sliderState } from '../../atoms/slider';
 
 import { Container, StyledSlider } from './styles';
 
 export function Slider() {
-  const [value, setValue] = useState(6);
+  const [sliderValue, setSliderValue] = useRecoilState(sliderState)
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setValue(Number(event.target.value));
+    setSliderValue(Number(event.target.value));
   }
 
   return (
@@ -15,7 +17,7 @@ export function Slider() {
         type="range"
         min="6"
         max="12"
-        value={value}
+        value={sliderValue}
         onChange={handleChange}
       />
     </Container>
