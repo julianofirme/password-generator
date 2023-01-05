@@ -29,13 +29,13 @@ export const Bar = styled.div<{ strength: number | null}>`
   height: 18px;
   outline: 1px solid var(--color-text);
   background: ${(props) => {
-    if (props.strength == 0) {
+    if (props.strength === 0 || props.strength === 1) {
       return 'var(--strength-weak)';
     }
-    if (props.strength == 1) {
+    if (props.strength === 2 || props.strength === 3) {
       return 'var(--strength-medium)';
     }
-    if (props.strength == 2) {
+    if (props.strength === 4) {
       return 'var(--strength-strong)';
     }
   }};

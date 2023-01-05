@@ -1,41 +1,63 @@
 import React from "react";
+import { useRecoilValue } from "recoil";
+import { passwordOptionsState } from "../../atoms/passwordOptions"
 
 import { Container, Bar } from "./styles";
 
 interface PasswordStrengthProps {
-  password: string;
+  includeNumbers: boolean;
+  includeSymbols: boolean;
+  includeUpperChar: boolean;
+  includeLowerChat: boolean;
 }
 
-const calculatePasswordStrength = (password: string) => {
-  let strength = 0;
+const calculatePasswordStrength = ({
+  includeNumbers,
+  includeSymbols,
+  includeUpperChar,
+  includeLowerChat,
+}: PasswordStrengthProps) => {
+  let score = 0;
 
-  if (password.length >= 8) {
-    strength += 1;
+  // Check for uppercase characters
+  if (includeUpperChar) {
+    score += 1;
   }
 
-  if (
-    /[a-z]/.test(password) &&
-    /[A-Z]/.test(password) &&
-    /[0-9]/.test(password) &&
-    /[^a-zA-Z0-9]/.test(password)
-  ) {
-    strength += 1;
+  // Check for lowercase characters
+  if (includeLowerChat) {
+    score += 1;
   }
 
-  return strength;
+  // Check for numbers
+  if (includeNumbers) {
+    score += 1;
+  }
+
+  // Check for symbols
+  if (includeSymbols) {
+    score += 1;
+  }
+
+  return score;
 };
 
-export function PasswordStrength({ password }: PasswordStrengthProps) {
-  const strength = calculatePasswordStrength(password);
+export function PasswordStrength() {
+  
+  const passwordOptions = useRecoilValue(passwordOptionsState)
+  console.log("🚀 ~ passwordOptions", passwordOptions)
+
+  const strength = calculatePasswordStrength(passwordOptions);
+
   console.log("🚀 ~ strength", strength);
 
   return (
     <Container>
       <p>STRENGTH</p>
       <div>
-        <Bar strength={strength} />
-        <Bar strength={strength === 0 ? null : strength} />
-        <Bar strength={strength === 1 || strength === 0 ? null : strength} />
+        <Bar strength={strength === 0 || strength >= 1 ? strength : null} />
+        <Bar strength={strength === 2 || strength >= 3 ? strength : null} />
+        <Bar strength={strength === 4 ? strength : null} />
       </div>
     </Container>
   );
