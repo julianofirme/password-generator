@@ -15,7 +15,7 @@ export function Slider() {
     <Container>
       <StyledSlider
         type="range"
-        min="6"
+        min="8"
         max="12"
         value={sliderValue}
         onChange={handleChange}
