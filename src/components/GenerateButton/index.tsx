@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 
 import { Container } from './styles';
 
 interface GenerateButtonProps {
-  onClick: (event: MouseEvent) => void;
+  onClick: MouseEventHandler<HTMLButtonElement>
+  value: string;
 }
 
-export function GenerateButton({ onClick }: GenerateButtonProps ) {
+export function GenerateButton({ onClick, value }: GenerateButtonProps ) {
   return (
     <Container>
-      <input type="button" value="GENERATE" onClick={() => onClick}/>
+      <button onClick={onClick}>{value}</button>
     </Container>
   );
 }

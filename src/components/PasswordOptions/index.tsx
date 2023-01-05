@@ -1,5 +1,7 @@
 import React from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
+import { characterPoolState } from "../../atoms/characterPool";
+import { passwordState } from "../../atoms/password";
 import { passwordOptionsState } from "../../atoms/passwordOptions";
 import { sliderState } from "../../atoms/slider";
 import { Checkbox } from "../Checkbox";
@@ -10,7 +12,9 @@ import { Slider } from "../Slider";
 import { Container, CharLength, Includes } from "./styles";
 
 export function PasswordOptions() {
+  const [password, setPassword] = useRecoilState(passwordState);
   const slideValue = useRecoilValue(sliderState);
+  const characterPool = useRecoilValue(characterPoolState);
   const [passwordOptions, setPasswordOptions] =
     useRecoilState(passwordOptionsState);
 
@@ -20,6 +24,14 @@ export function PasswordOptions() {
       ...passwordOptions,
       [name]: checked,
     });
+  };
+  
+  const handleGeneratePassword = () => {
+    let password = "";
+    for (let i = 0; i < slideValue; i++) {
+      password += characterPool.charAt(Math.floor(Math.random() * characterPool.length));
+    }
+    setPassword(password);
   };
 
   return (
@@ -40,7 +52,7 @@ export function PasswordOptions() {
           onChange={handleCheckboxChange}
         />
         <Checkbox
-          name="includeLowerChat"
+          name="includeLowerChar"
           label="Include lowercase characters"
           onChange={handleCheckboxChange}
         />
@@ -58,7 +70,7 @@ export function PasswordOptions() {
 
       <PasswordStrength />
 
-      <GenerateButton onClick={() => console.log("foo")} />
+      <GenerateButton value="GENERATE" onClick={handleGeneratePassword} />
     </Container>
   );
 }

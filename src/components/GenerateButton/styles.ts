@@ -7,7 +7,7 @@ export const Container = styled.div`
   width: 100%;
   margin-top: 12px;
   
-  > input {
+  > button {
     background: var(--color-primary);
     width: 100%;
     padding: 12px;

@@ -6,6 +6,6 @@ export const passwordOptionsState = atom({
     includeNumbers: false,
     includeSymbols: false,
     includeUpperChar: false,
-    includeLowerChat: false
+    includeLowerChar: false,
   }
 })

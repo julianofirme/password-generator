@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { MdOutlineFileCopy } from 'react-icons/md';
+import { useRecoilValue } from 'recoil';
+import { passwordState } from '../../atoms/password';
 
 import { Container } from './styles';
 
 export function GeneratedPassword() {
+  const password = useRecoilValue(passwordState)
+
   return (
     <Container>
-      <h3>PTx1f5DaFX</h3>
+      <h3>{password}</h3>
       <button><MdOutlineFileCopy /></button>
     </Container>
   );
