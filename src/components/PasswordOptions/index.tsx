@@ -1,5 +1,6 @@
 import React from "react";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { passwordOptionsState } from "../../atoms/passwordOptions";
 import { sliderState } from "../../atoms/slider";
 import { Checkbox } from "../Checkbox";
 import { GenerateButton } from "../GenerateButton";
@@ -9,7 +10,17 @@ import { Slider } from "../Slider";
 import { Container, CharLength, Includes } from "./styles";
 
 export function PasswordOptions() {
-  const slideValue = useRecoilValue(sliderState)
+  const slideValue = useRecoilValue(sliderState);
+  const [passwordOptions, setPasswordOptions] =
+    useRecoilState(passwordOptionsState);
+
+  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, checked } = event.target;
+    setPasswordOptions({
+      ...passwordOptions,
+      [name]: checked,
+    });
+  };
 
   return (
     <Container>
@@ -23,15 +34,31 @@ export function PasswordOptions() {
       </CharLength>
 
       <Includes>
-        <Checkbox name="uppercase" label="Include uppercase characters" />
-        <Checkbox name="lowercase" label="Include lowercase characters" />
-        <Checkbox name="numbers" label="Include numbers" />
-        <Checkbox name="symbols" label="Include symbols" />
+        <Checkbox
+          name="includeUpperChar"
+          label="Include uppercase characters"
+          onChange={handleCheckboxChange}
+        />
+        <Checkbox
+          name="includeLowerChat"
+          label="Include lowercase characters"
+          onChange={handleCheckboxChange}
+        />
+        <Checkbox
+          name="includeNumbers"
+          label="Include numbers"
+          onChange={handleCheckboxChange}
+        />
+        <Checkbox
+          name="includeSymbols"
+          label="Include symbols"
+          onChange={handleCheckboxChange}
+        />
       </Includes>
 
-      <PasswordStrength password="123a" />
+      <PasswordStrength />
 
-      <GenerateButton onClick={() => console.log('foo')}/>
+      <GenerateButton onClick={() => console.log("foo")} />
     </Container>
   );
 }
