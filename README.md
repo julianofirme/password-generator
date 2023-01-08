@@ -1,6 +1,9 @@
 # Password Generator
 
 This is an application that allows the user to create secure passwords according to their preferences. The user can choose to include lowercase letters, uppercase letters, symbols, and numbers in the password and can also set the password size between 8 and 12 characters. In addition, the application shows the strength of the generated password based on the options chosen by the user.
+![image](https://user-images.githubusercontent.com/71743049/211220420-ded3b84f-15fd-4957-be1e-41dfea675d56.png)
+![image](https://user-images.githubusercontent.com/71743049/211220430-07d72c46-1b76-41a6-bbdb-7ce344696da0.png)
+
 
 ## Technologies Used
 
