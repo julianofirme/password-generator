@@ -9,7 +9,6 @@ This is an application that allows the user to create secure passwords according
 
 - TypeScript
 - ReactJS
-- Vite
 
 ## How to Use
 
